@@ -497,6 +497,16 @@ def test_legend_title_empty():
     assert not leg.get_title().get_visible()
 
 
+@image_comparison(baseline_images=['empty_bar_legend'],
+                  extensions=['png'])
+def test_empty_bar_with_legend():
+    # test that the legend will show if we plot an empty bar chart.
+    # refer to #13003
+    ax = plt.gca()
+    ax.bar([], [], label='foo')
+    ax.legend()
+
+
 def test_legend_proper_window_extent():
     # test that legend returns the expected extent under various dpi...
     fig, ax = plt.subplots(dpi=100)
